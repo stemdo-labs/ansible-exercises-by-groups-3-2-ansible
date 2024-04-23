@@ -1,5 +1,4 @@
 ---
-toconf: firewalld
 newports:
   port1: 8081/tcp
   port2: 161-162/udp

@@ -9,6 +9,7 @@
 #copie el archivo ansible.cfg en esta carpeta con el comando
 cp -pr /etc/ansible/ansible.cfg .
 #y luego lo edite para que tome el inventario-ejer2, superusuario root y usuario remoto nodoansible1
+#a posterior ya lo borre, hoy no esta este archivo. Uso el que esta en su lugar original
 
 #4
 #forma tradicional
