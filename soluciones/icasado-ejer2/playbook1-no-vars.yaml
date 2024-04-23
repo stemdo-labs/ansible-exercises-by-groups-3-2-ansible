@@ -1,0 +1,8 @@
+# He creado un directorio para hacer pruebas en /tmp/
+---
+- hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Comprimir directorio /tmp/prueba/ en formato gz
+      shell: tar -cf prueba.tar /tmp/prueba/
