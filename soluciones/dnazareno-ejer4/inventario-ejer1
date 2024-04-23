@@ -1,0 +1,9 @@
+[grupo1]
+nodo1 ansible_user=nodoansible1
+
+[grupo2]
+nodo2 ansible_user=nodoansible2
+
+[grupomayor]
+nodo1 ansible_user=nodoansible1
+nodo2 ansible_user=nodoansible2

@@ -1,0 +1,14 @@
+---
+  - name: Instalo apache2 en los nodos
+    apt:
+      name: apache2
+      state: latest
+      #update_cache: yes
+    notify:
+      - reiniciar httpd
+
+  - name: Iniciar apache2
+    systemd:
+      name: apache2
+      state: started
+...
