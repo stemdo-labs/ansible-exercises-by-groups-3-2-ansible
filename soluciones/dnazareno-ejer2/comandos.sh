@@ -1,6 +1,4 @@
 #1
-#Me traigo el ansible.cfg con
-cp -pr ../dnazareno-ejer1/ansible.cfg .
 #Edito el archivo para que use inventario-ejer1
 #A inventario-ejer1 le agregue un grupomayor y los usuarios para acceder en cada nodo
 #Primero replico un ejercicio anterior pero en formato ad hoc y lo ejecuto sobre los dos nodos que tengo abiertos
