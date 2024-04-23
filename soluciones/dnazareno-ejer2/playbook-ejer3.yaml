@@ -1,0 +1,17 @@
+---
+- hosts: grupomayor
+  tasks:
+    - name: Copiar archivo .deb
+      copy:
+        src: ~/Downloads/nano_3.2-3_amd64.deb
+        dest: /tmp/
+
+    - name: Instalar archivo .deb
+      apt:
+        deb: /tmp/nano_3.2-3_amd64.deb
+    
+    - name: Instalar vim
+      apt:
+        name: vim
+        state: latest
+...
