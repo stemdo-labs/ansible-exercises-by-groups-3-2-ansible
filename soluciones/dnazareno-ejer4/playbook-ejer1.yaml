@@ -1,0 +1,12 @@
+---
+- hosts: grupomayor
+  become: true
+  tasks:
+    - import_tasks: tareas-ejer1.yaml
+
+  handlers:
+    - name: reiniciar httpd
+      systemd:
+        name: apache2
+        state: restarted
+...
