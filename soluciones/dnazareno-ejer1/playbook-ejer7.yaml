@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  become: true
+  user: usuario-pruebas
+  tasks:
+    - name: Ejecutar ping sobre los nodos del grupo webservers
+      ping:
+
+    - name: Instalo apache2 en los nodos
+      apt:
+        name: httpd
+        state: latest
+...
