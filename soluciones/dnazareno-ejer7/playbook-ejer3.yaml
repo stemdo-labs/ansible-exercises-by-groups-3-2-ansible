@@ -1,0 +1,16 @@
+---
+- hosts: grupomayor
+  become: true
+  tasks:
+
+  - name: Buscar bloqueo.lock
+    stat:
+      path: /tmp/bloqueo.lock
+    register: register_name
+
+  - name: instala en ubuntu
+    apt:
+      name: git
+      state: present
+    when: register_name.stat.exists
+...
