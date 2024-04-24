@@ -1,0 +1,7 @@
+---
+pk: firewalld
+newports:
+  port1: 8081/tcp
+  port2: 161-162/udp
+  port3: 192.168.20.0/24
+...

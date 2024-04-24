@@ -1,0 +1,33 @@
+---
+- hosts: grupomayor
+  become: true
+  vars:
+    newpks : [curl,apt-transport-https,ca-certificates,software-properties-common,glances,git,vim]
+  tasks:
+    - name: Instalo apache2 en los nodos Ubuntu
+      apt:
+        name: "{{ item }}"
+        state: latest
+        #update_cache: yes
+      loop: "{{ newpks }}"
+      tags:
+        - ubuntu 
+
+    - name: Instalo apache2 en los nodos RedHat
+      yum:
+        name: "{{ item }}"
+        state: latest
+        #update_cache: yes
+      loop: "{{ newpks }}"
+      tags:
+        - redhat 
+
+    - name: Instalo apache2 en los nodos Windows
+      win_chocolatey:
+        name: "{{ item }}"
+        state: latest
+        #update_cache: yes
+      loop: "{{ newpks }}"
+      tags:
+        - windows
+...

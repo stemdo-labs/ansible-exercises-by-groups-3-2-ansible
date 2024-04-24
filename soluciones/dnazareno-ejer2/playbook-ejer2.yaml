@@ -1,0 +1,11 @@
+---
+- hosts: grupomayor
+  tasks:
+    - name: Comprimir archivos con exclusiones
+      archive:
+        path: /tmp/*
+        dest: /tmp/nuevozip.tar.gz
+        exclude_path:
+          - /tmp/*access*.*
+          - /tmp/*.txt
+...

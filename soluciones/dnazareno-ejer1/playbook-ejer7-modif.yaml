@@ -1,0 +1,23 @@
+---
+- hosts: webservers
+  become: true
+  user: usuario-pruebas
+  tasks:
+    - name: Ejecutar ping sobre los nodos del grupo webservers
+      ping:
+
+    - name: Instalo apache2 en los nodos
+      apt:
+        name: httpd
+        state: latest
+
+    - name: Me aseguro qe httpd esta corriendo
+      systemd:
+        state: started
+        name: httpd
+
+    - name: Instalo mariadb en los nodos
+      apt:
+        name: mariadb-server
+        state: latest
+...

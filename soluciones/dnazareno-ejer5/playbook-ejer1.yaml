@@ -1,0 +1,18 @@
+---
+- hosts: grupomayor
+  vars:
+    comandos:
+      - ls /
+      - ls -a /
+      - ls -la /
+  tasks:
+    - name: Ejecutar {{ item }} en remoto
+      shell: |
+        {{ item }}
+      register: resultado
+      loop: "{{ comandos }}"
+      when: ansible_facts['system']=="Linux"
+
+
+    - debug: var=resultado
+...

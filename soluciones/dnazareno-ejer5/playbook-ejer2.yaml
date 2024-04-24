@@ -1,0 +1,25 @@
+---
+- hosts: grupomayor
+  become: true
+  tasks:
+    - name: Crear carpeta /tmp/jsons
+      file:
+        path: /tmp/jsons
+        state: directory
+        mode: '0755'
+
+    - name: Lista los ficheros JSON en /home/{{ ansible_user_id  }}/json
+      shell: ls /home/{{ ansible_user_id  }}/json/*.json
+      register: ficheros
+
+    - debug: var=ficheros
+
+    - name: Copiar jsons en /tmp/jsons
+      copy:
+        src: "{{ item }}"
+        dest: "/tmp/jsons"
+        mode: '0644'
+      loop: "{{ ficheros.stdout_lines }}"
+...
+
+#copy /home/nodoansible2/json/fichero3.json /tmp/jsons/fichero3.json

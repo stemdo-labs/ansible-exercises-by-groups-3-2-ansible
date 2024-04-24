@@ -1,0 +1,8 @@
+---
+- hosts: webservers
+  become: true
+  user: usuario-pruebas
+  tasks:
+    - name: Ejecutar comando en remoto
+      shell: date>/tmp/fechahora.data
+...

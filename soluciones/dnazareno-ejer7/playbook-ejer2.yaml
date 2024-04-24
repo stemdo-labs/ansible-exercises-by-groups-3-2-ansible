@@ -1,0 +1,17 @@
+- hosts: grupomayor
+#  become: true
+  tasks:
+  - name: crear el directorio bloqueo.lock
+    file:
+      path: /tmp/bloqueo.lock
+      owner: "{{ ansible_user_id  }}"
+      mode: '0775'
+      state: touch
+
+  - name: Esperar hasta que el archivo sea borrado
+    wait_for:
+      path: /tmp/bloqueo.lock
+      state: absent
+
+  - debug:
+      msg: Ha salido del wait for

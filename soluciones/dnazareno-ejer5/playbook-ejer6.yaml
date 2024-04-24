@@ -1,0 +1,19 @@
+---
+- hosts: grupomayor
+  become: true
+  vars:
+    grupos : [usuarios,admin,desarrollo,testing,produccion]
+    usuarios : [Pedro,Juan,Maria,Ana,Antonio,Marta,Jose]
+  tasks:
+    - name: Crear grupos
+      group:
+        name: "{{ item  }}"
+        state: present
+      loop: "{{ grupos }}"
+
+    - name: Crear usuarios
+      user:
+        name: "{{ item }}"
+        groups: "{{ grupos }}"
+      loop: "{{ usuarios }}"
+...

@@ -1,0 +1,20 @@
+- hosts: grupomayor
+  vars_prompt:
+    - name: "entorno"
+      prompt: "Cual es el entorno de despliegue? (dev/pre/pro)"
+
+  tasks:
+    - name: Carga de variables entorno dev
+      include_vars:
+        file: dev-vars.yaml
+      when: entorno=="dev"
+
+    - name: Carga de variables entorno pre
+      include_vars:
+        file: pre-vars.yaml
+      when: entorno=="pre"
+
+    - name: Carga de variables entorno pro
+      include_vars:
+        file: pro-vars.yaml
+      when: entorno=="pro"
