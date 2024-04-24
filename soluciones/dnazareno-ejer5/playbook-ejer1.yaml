@@ -6,16 +6,12 @@
       - ls -a /
       - ls -la /
   tasks:
-    - name: Consulto SO del nodo
-      shell: uname
-      register: so
-
     - name: Ejecutar {{ item }} en remoto
       shell: |
         {{ item }}
       register: resultado
       loop: "{{ comandos }}"
-      when: so.stdout=="Linux"
+      when: ansible_facts['system']=="Linux"
 
 
     - debug: var=resultado

@@ -1,5 +1,6 @@
 ---
 - hosts: grupomayor
+  become: true
   tasks:
     - name: Crear carpeta /tmp/jsons
       file:

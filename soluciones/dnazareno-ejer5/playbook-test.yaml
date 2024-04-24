@@ -1,0 +1,7 @@
+- hosts: grupomayor
+  tasks:
+  - name: Print all available facts
+    debug:
+      var: ansible_facts['distribution']
+    register: datos
+
