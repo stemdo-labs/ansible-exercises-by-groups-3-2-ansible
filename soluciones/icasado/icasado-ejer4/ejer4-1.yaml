@@ -1,0 +1,9 @@
+---
+- hosts: nodo1
+  become: true
+  tasks:
+    - name: Instalar Apache
+      include_tasks: install_apache.yaml
+    - name: Levantar apache
+      include_tasks: apache_up.yaml  
+...
