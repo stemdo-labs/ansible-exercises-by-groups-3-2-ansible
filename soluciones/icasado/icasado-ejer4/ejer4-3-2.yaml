@@ -1,0 +1,2 @@
+- name: Importar playbook
+  import_playbook: ./ejer4-3.yaml
