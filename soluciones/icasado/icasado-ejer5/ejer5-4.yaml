@@ -30,5 +30,6 @@
         - glances
         - git
         - vim
+      tags: apt
       when: ansible_distribution == "CentOS"
 ...

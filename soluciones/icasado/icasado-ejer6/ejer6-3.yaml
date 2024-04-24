@@ -1,0 +1,23 @@
+- name: Buscar y descomprimir archivo
+  hosts: nodo1 
+  become: true
+
+  tasks:
+    - name: Buscar el archivo
+      find:
+        paths: /
+        patterns: "server-jre-8u191-linux-x64.tar.gz"
+      register: archivos_encontrados
+
+    - name: Mostrar resultados
+      debug:
+        var: archivos_encontrados.files
+
+    - name: Descomprimir archivo
+      unarchive:
+        src: "{{ item.path }}"
+        dest: /opt/oracle
+        remote_src: yes
+        owner: weblogic
+        group: weblogic
+      loop: "{{ archivos_encontrados.files }}"
