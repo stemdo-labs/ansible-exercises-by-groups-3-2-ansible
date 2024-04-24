@@ -1,0 +1,9 @@
+- hosts: grupomayor
+  tasks:
+  - name: Encontrar logs de mas de 100mb y que cumpla patron
+    find:
+      paths: /var/log
+      recurse: yes
+      size: 100m
+      patterns:
+        - '^[a-z]_[0-9]{8}.log$'

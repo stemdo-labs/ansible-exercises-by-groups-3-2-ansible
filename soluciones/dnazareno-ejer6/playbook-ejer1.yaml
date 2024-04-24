@@ -1,0 +1,12 @@
+- hosts: grupomayor
+  become: true
+  vars:
+    web_service: [apache2,vsftpd]
+  tasks:
+    - name: inicia el servicio, si no lo esta
+      service:
+        name: "{{ item }}"
+        state: started
+      register: status
+      loop: "{{ web_service }}"
+    - debug: var=status.results
