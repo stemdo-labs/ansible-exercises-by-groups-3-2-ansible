@@ -1,0 +1,5 @@
+fw_source: "192.168.40.0/24"
+fw_service: "https"
+fw_permanent: true
+fw_port: "161-162/udp"
+fw_state: enable
