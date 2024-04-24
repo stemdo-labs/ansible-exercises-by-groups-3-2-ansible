@@ -1,0 +1,18 @@
+---
+- name: Crear usuarios
+  hosts: nodo2
+  become: true
+  tasks:
+    - name: Cargar lista de usuarios
+      include_vars: 
+        file: users_list.yaml
+
+    - name: Crear usuarios
+      user:
+        name: "{{ item.nombre }}"
+        groups: "{{ item.grupos.split(',') }}"
+        uid: "{{ item.uid | default(omit) }}"
+        expires: "{{ item.expires | default(omit) }}"
+        ssh_key_bits: "{{ item.ssh_key_bits | default(omit) }}"
+        ssh_key_file: "{{ item.ssh_key_file | default(omit) }}"
+      loop: "{{ users }}"

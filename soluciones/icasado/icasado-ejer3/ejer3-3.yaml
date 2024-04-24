@@ -1,0 +1,9 @@
+- name: Información del sistema
+  hosts: localhost, node1
+  tasks:
+    - name: Mostrar información del sistema
+      debug:
+        msg: |
+          SO: {{ ansible_facts['os_family'] }}
+          Hostname: {{ ansible_facts['hostname'] }}
+          IPv4: {{ ansible_facts['default_ipv4']['address'] }}
