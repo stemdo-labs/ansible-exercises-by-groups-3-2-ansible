@@ -1,5 +1,5 @@
 ---
-- name: Instalar mariadb
+- name: Playbook3 ejercicio 1 - mariadb
   hosts: all
   become: true
   user: node
