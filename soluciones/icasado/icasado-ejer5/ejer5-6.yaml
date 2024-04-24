@@ -1,0 +1,28 @@
+---
+- name: Crear grupos y usuarios
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Crear usuarios
+      user:
+        name: "{{ item }}"
+        remove: yes
+      loop:
+        - Pedro
+        - Juan
+        - Maria
+        - Ana
+        - Antonio
+        - Marta
+        - Jose
+
+    - name: Crear grupos
+      group:
+        name: "{{ item }}"
+        remove: yes
+      loop:
+        - usuarios
+        - admin
+        - desarrollo
+        - testing
+        - produccion

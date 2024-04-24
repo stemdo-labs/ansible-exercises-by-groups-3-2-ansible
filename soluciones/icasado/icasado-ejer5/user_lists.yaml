@@ -1,0 +1,51 @@
+users:
+  - nombre: Pedro
+    grupos: admin, usuarios, produccion
+    expires: -1
+    uid: 1040
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+  - nombre: Juan
+    grupos: usuarios, desarrollo
+    expires: -1
+    uid: 1041
+
+  - nombre: Maria
+    grupos: usuarios, desarrollo
+    expires: -1
+    uid: 1042
+
+  - nombre: Ana
+    grupos: testing, produccion
+    expires: -1
+    uid: 1043
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+    
+  - nombre: Antonio
+    grupos: usuarios, testing
+    expires: -1
+    uid: 1044
+
+  - nombre: Marta
+    grupos: usuarios, produccion
+    expires: -1
+    uid: 1044
+
+  - nombre: Jose
+    grupos: admin, usuarios, desarrollo
+    expires: -1
+    uid: 1044
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+  - nombre: Invitado1
+    grupos: usuarios
+    expires: 1728000
+
+  - nombre: Invitado2
+    grupos: usuarios
+    expires: 1728000
+
+    
