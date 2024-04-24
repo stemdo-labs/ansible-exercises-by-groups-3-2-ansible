@@ -1,5 +1,5 @@
 ---
-- name: Playbook3 ejercicio1
+- name: Playbook3 ejercicio 1 - apache
   hosts: all
   become: true
   user: node
@@ -12,8 +12,5 @@
       shell: date > /tmp/fechahora.data
     - name: Comprobar que apache se ha instalado
       shell: apache2 -v
-    - name: Instalar mariadb
-      apt:
-        name: mariadb-server
-        state: latest
+
 ...      

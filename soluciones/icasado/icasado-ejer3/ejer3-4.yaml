@@ -1,0 +1,6 @@
+- name: Utilizar variables de entorno
+  hosts: nodo1
+  tasks:
+    - name: Imprimir la variable de entorno "PATH"
+      debug:
+        msg: "{{ hostvars[inventory_hostname]['ansible_env']['PATH'] }}"
