@@ -1,6 +1,7 @@
 #1
 #Modifique el archivo /etc/hosts para poder usar alias en el archivo inventario-ejer1. 
 #Puse una copia de ese archivo hosts en esta carpeta
+#A posterior, dias despues, volvi el archivo hosts a su estado anterior y agregue esta informacion en el inventario con la variable ansible_host
 
 #2
 #archivo inventario-ejer2

@@ -12,7 +12,8 @@ ansible-playbook -i /home/vboxuser/Workspace/gitrepo/ansible-exercises-by-groups
 
 #4
 #playbook-ejer4.yaml
-ansible-playbook -i /home/vboxuser/Workspace/gitrepo/ansible-exercises-by-groups-3-2-ansible/soluciones/dnazareno-ejer1/inventario playbook-ejer4.yaml
+ansible-playbook -i /home/vboxuser/Workspace/gitrepo/ansible-exercises-by-groups-3-2-ansible/soluciones/dnazareno-ejer1/inventario -tags ubuntu playbook-ejer4-tags.yaml
+ansible-playbook -i /home/vboxuser/Workspace/gitrepo/ansible-exercises-by-groups-3-2-ansible/soluciones/dnazareno-ejer1/inventario playbook-ejer4-dist.yaml
 
 #5
 #playbook-ejer5.yaml
