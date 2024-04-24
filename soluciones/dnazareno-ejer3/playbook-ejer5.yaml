@@ -1,0 +1,17 @@
+---
+- name: Agrego los facts personalizados
+  become: true
+  hosts: grupomayor
+  tasks:
+    - name: crear el directorio facts.d
+      file:
+        path: /etc/ansible/facts.d
+        owner: "{{ ansible_user_id  }}"
+        mode: 775
+        state: directory
+        
+    - name: copiar hechos.fact al directorio facts.d
+      copy:
+        src: hechos.fact
+        dest: /etc/ansible/facts.d
+...

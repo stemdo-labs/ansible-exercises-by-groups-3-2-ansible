@@ -1,6 +1,25 @@
 ---
-- hosts: grupomayor
+- hosts: web
   tasks:
-    - include_vars: variables-ejer1.yaml
-    - include_tasks: tareas-ejer1.yaml
+    - include_vars: variables-ejer1.yaml  
+    - name: Configurar firewall
+      "{{ pk }}":
+        service: https
+        permanent: true
+        state: enabled
+  
+      "{{ pk }}":
+        port: "{{ newports.port1 }}"
+        permanent: true
+        state: disabled
+
+      "{{ pk }}":
+        port: "{{ newports.port2 }}"
+        permanent: true
+        state: disabled
+
+      "{{ pk }}":
+        source: "{{ newports.port3 }}"
+        zone: internal
+        state: enabled
 ...
