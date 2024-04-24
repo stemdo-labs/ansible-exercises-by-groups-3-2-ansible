@@ -1,0 +1,9 @@
+- hosts: grupomayor
+  tasks:
+  - name: Encontrar logs de los ultimos 30 dias
+    find:
+      paths: /var/log
+      age: 30d
+      patterns:
+        - '*.log'
+      recurse: yes

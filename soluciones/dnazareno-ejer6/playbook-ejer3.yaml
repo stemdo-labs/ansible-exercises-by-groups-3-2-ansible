@@ -1,0 +1,7 @@
+- hosts: grupomayor
+  tasks:
+  - name: Extract foo.tgz into /var/lib/foo
+    ansible.builtin.unarchive:
+      src: server-jre-8u191-linux-x64.tar.gz
+      dest: /opt/oracle
+      owner: weblogic
