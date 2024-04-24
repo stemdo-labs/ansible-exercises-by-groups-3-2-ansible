@@ -1,0 +1,22 @@
+- name: Comprimir archivos
+  hosts: nodo1
+  tasks:
+    - name: Definir lista de extensiones
+      set_fact:
+        extensiones_logs:
+          - "*.log"
+          - "*.out"
+          - "*.txt"
+
+    - name: Buscar archivos
+      find:
+        paths: /home/nacho/tomcat/logs
+        patterns: "{{ extensiones_logs }}"
+      register: archivos_logs
+
+    - name: Comprimir archivos
+      archive:
+        path: "{{ item.path }}"
+        dest: /home/node/prueba/logs/logs.tar.gz
+        format: gz
+      loop: "{{ archivos_logs.files }}"

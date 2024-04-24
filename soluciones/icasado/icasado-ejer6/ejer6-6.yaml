@@ -1,0 +1,14 @@
+- name: Buscar archivos .log con mas de 30 dias 
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Buscar archivos
+      find:
+        paths: /
+        size: 100m
+      register: archivos
+
+    - name: Mostrar archivos encontrados
+      debug:
+        msg: "Archivo encontrado: {{ item.path }}"
+      loop: "{{ archivos.files }}"
