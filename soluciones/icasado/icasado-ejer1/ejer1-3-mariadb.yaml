@@ -1,0 +1,11 @@
+---
+- name: Playbook3 ejercicio 1 - mariadb
+  hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Instalar mariadb
+      apt:
+        name: mariadb-server
+        state: latest
+...

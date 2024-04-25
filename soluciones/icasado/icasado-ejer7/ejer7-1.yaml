@@ -1,0 +1,14 @@
+- name: ejercicio
+  hosts: all
+  become: true
+  tasks:
+    - name: instala en ubuntu
+      apt:
+          name: git
+          state: present
+      when: ansible_distribution == "Ubuntu"
+    - name: instala en centos
+      yum: 
+          name: git
+          state: present
+      when: ansible_distribution == "CentOS"

@@ -1,0 +1,35 @@
+---
+- name: Instalar paquetes con loop
+  hosts: all
+  become: true
+  tasks:
+    - name: Instalar paquetes con apt
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - curl
+        - apt-transport-https
+        - ca-certificates
+        - software-properties-common
+        - glances
+        - git
+        - vim
+      tags: apt
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Instalar paquetes con yum
+      yum:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - curl
+        - apt-transport-https
+        - ca-certificates
+        - software-properties-common
+        - glances
+        - git
+        - vim
+      tags: apt
+      when: ansible_distribution == "CentOS"
+...

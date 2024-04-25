@@ -1,0 +1,13 @@
+- name: Mostrar ficheros de los nodos que sean ubuntu
+  hosts: all
+  become: true
+  tasks:
+    - name: Listar ficheros de nodos Ubuntu con ls
+      shell: ls /
+      when: ansible_distribution == "Ubuntu"
+    - name: Listar ficheros de nodos Ubuntu con ls -a 
+      shell: ls -a /
+      when: ansible_distribution == "Ubuntu"
+    - name: Listar ficheros de nodos Ubuntu con ls -la 
+      shell: ls -la /
+      when: ansible_distribution == "Ubuntu"

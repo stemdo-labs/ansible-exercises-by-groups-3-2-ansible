@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Descargar el paquete netstat
+      shell: wget http://archive.ubuntu.com/ubuntu/pool/universe/n/netstat-nat/netstat-nat_1.4.10-3build1_amd64.deb
+    - name: Instalar el paquete en local
+      shell: sudo apt install ./netstat-nat_1.4.10-3build1_amd64.deb
+    - name: Instalar el paquete por internet
+      shell: sudo apt install netstat-nat
+...

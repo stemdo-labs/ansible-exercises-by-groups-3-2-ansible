@@ -1,0 +1,24 @@
+---
+- name: Comprobar estado de los servicios
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Crear lista de servicios
+      set_fact:
+        web_services:
+          - httpd
+          - vsftpd
+
+    - name: Verificar el estado de los servicios
+      systemd:
+        name: "{{ item }}"
+      loop: "{{ web_services }}"
+      register: service_status
+
+    - name: Resultado
+      debug:
+        msg: "El servicio {{ item.item }} está {{ 'iniciado' if item.status == 'active' else 'detenido' }}"
+      loop: "{{ service_status.results }}" 
+      loop_control: # Controla la repetición del bucle
+        label: "{{ item.item }}"
+...

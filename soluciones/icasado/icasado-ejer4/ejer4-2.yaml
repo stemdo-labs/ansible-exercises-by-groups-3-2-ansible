@@ -1,0 +1,21 @@
+---
+- hosts: nodo1
+  become: true
+  tasks:
+    - name: Instalar Apache
+      include_tasks: install_apache.yaml
+    - name: Levantar apache
+      include_tasks: apache_up.yaml
+
+    - name: Verificar si el archivo de configuracin ha cambiado
+      stat: 
+        path: /etc/apache/apache2.conf
+      register: config_changed
+
+    - name: Reniciar servicio si ha cambiado el archivo de configuracion
+      service:
+        name: apache2
+        state: restarted
+      when: config_changed.stat.exists and config_changed.stat.mtime > ansible_date_time.epoch
+      # Comprueba si el tiempo de modificación es mayor al momento en el que se ejecutó el playbook
+...
