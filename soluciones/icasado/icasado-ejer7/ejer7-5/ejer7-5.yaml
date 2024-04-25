@@ -1,0 +1,6 @@
+---
+- name: Instalar MySQL
+  hosts: nodo1
+  become: true
+  roles:
+    - rol-mysql

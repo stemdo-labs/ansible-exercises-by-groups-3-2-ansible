@@ -1,0 +1,5 @@
+---
+- name: Instalar MySQL
+  package:
+    name: mysql-server
+    state: latest

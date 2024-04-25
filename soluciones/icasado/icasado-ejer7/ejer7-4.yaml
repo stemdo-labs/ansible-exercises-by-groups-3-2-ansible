@@ -1,0 +1,15 @@
+- name: Playbook con vault
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Cargar variables
+      include_vars:
+        file: missecretos.yaml
+
+    - name: Mostrar usuario
+      debug:
+        var: miuser
+
+    - name: Mostrar contraseña
+      debug:
+        var: micontra 
