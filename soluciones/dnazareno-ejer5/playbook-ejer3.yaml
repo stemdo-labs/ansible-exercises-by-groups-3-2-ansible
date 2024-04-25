@@ -1,0 +1,13 @@
+---
+- hosts: grupomayor
+  become: true
+  vars:
+    newpks : [curl,apt-transport-https,ca-certificates,software-properties-common,glances,git,vim]
+  tasks:
+    - name: Instalo apache2 en los nodos
+      apt:
+        name: "{{ item }}"
+        state: latest
+        #update_cache: yes
+      loop: "{{ newpks }}"
+...

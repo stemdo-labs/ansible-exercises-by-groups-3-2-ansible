@@ -1,0 +1,14 @@
+- hosts: grupomayor
+  vars:
+    apps: ['apache2','vim','nginx','filebeat']
+  tasks:
+  - name: Gather the package facts
+    package_facts:
+      manager: auto
+
+  - name: apps test
+    debug:
+      msg: "{{ item }} found"
+    loop: "{{ apps }}"
+    when: "item in ansible_facts.packages"
+    

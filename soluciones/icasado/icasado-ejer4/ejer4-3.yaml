@@ -1,0 +1,9 @@
+- name: Limpiar dependencias y la cache
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Limpiar dependencias
+      apt:
+        autoremove: yes
+    - name: Limpiar cache
+      shell: sync; echo 3 > /proc/sys/vm/drop_caches

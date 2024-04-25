@@ -1,0 +1,9 @@
+---
+- name: Playbook1 ejercicio1
+  hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Guardar fecha en /tmp/fechahora.data
+      shell: date > /tmp/fechahora.data
+...      

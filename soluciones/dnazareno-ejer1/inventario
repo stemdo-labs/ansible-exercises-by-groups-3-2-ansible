@@ -1,0 +1,9 @@
+[grupo1]
+nodo1 ansible_host=192.168.1.84 ansible_user=nodoansible1 ansible_become_password=123456
+
+[grupo2]
+nodo2 ansible_host=192.168.1.81 ansible_user=nodoansible2 ansible_become_password=123456
+
+[grupomayor]
+nodo1 ansible_host=192.168.1.84 ansible_user=nodoansible1 ansible_become_password=123456
+nodo2 ansible_host=192.168.1.81 ansible_user=nodoansible2 ansible_become_password=123456

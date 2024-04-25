@@ -1,0 +1,7 @@
+---
+- name: Copiar ficheron JSON
+  hosts: all
+  become: true
+  tasks:
+    - name: Copiar ficheros JSON
+      shell: cp /home/node/json/*.json /tmp/jsons

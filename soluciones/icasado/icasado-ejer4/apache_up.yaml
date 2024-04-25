@@ -1,0 +1,4 @@
+---
+  - name: Iniciar apache
+    shell: service apache2 start
+...

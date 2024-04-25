@@ -1,0 +1,35 @@
+---
+- hosts: grupomayor
+  become: true
+  tasks:
+    - name: Hago apt update
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Instalo nxginx en los nodos
+      apt:
+        name: nginx
+        state: latest
+        #update_cache: yes
+
+    - firewalld:
+        service: https
+        permanent: yes
+        state: enabled
+
+    - firewalld:
+        zone: public
+        service: http
+        permanent: yes
+        state: enabled
+
+    - name: reiniciar firewalld
+      firewalld:
+        name: firewalld
+        state: restarted
+      register: estado
+
+    - debug: var=estado
+      
+...

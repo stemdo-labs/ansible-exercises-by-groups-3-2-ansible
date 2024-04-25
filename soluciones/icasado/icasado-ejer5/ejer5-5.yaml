@@ -1,0 +1,34 @@
+---
+- name: Instalar Nginx
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Actualizar dependencias e instalar Nginx
+      apt:
+        name: nginx
+        state: latest
+#        update_cache: yes
+
+    - name: Permitir paso a traves del cortafuegos
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+
+    - name: Verificar estado del cortafuegos
+      shell: ufw status
+      register: firewall_status
+
+    - name: Mostrar estado del firewall
+      debug:
+        var: firewall_status.stdout_lines
+
+    - name: Verificar que el servicio está funcionando
+      shell: service nginx status || true 
+      register: nginx_status
+    
+    - name: Mostrar el estado del servicio
+      debug:
+        msg: "Estado del servicio: {{ nginx_status.stdout_lines }}"
+
+...

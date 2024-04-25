@@ -1,0 +1,4 @@
+ansible nodo1 -m setup --tree ./ -i ../inventario
+                               ^
+                               |
+                            Ruta donde se guarda el resultado

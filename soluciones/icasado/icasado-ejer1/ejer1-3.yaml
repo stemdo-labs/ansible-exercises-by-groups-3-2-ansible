@@ -1,0 +1,16 @@
+---
+- name: Playbook3 ejercicio 1 - apache
+  hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Instalar apache
+      apt:
+        name: apache2
+        state: present
+    - name: Guardar fecha en /tmp/fechahora.data
+      shell: date > /tmp/fechahora.data
+    - name: Comprobar que apache se ha instalado
+      shell: apache2 -v
+
+...      

@@ -1,0 +1,11 @@
+# He usado dos directorios que he creado para hacer pruebas con archivos que contienen la palabra access y son .txt
+# - /tmp/prueba
+# - /var/log/prueba
+---
+- hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Comprimir todos los archivos de la carpeta /apps/tomcat/logs y de la carpeta /var/log/tomcat/
+      shell: tar -cf prueba2.tar --exclude='*access*.txt' /tmp/prueba/ && tar -cf prueba3.tar --exclude='access.txt' /var/log/prueba/
+...

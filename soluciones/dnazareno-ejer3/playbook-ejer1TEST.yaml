@@ -1,0 +1,6 @@
+---
+- hosts: grupomayor
+  tasks:
+    - include_vars: variables-ejer1.yaml
+    - include_tasks: tareas-ejer1.yaml
+...

@@ -1,0 +1,20 @@
+---
+# Hace falta tener instalado firewalld (apt install firewalld) y python-firewall (pip install firewall)
+- name: Ejercicio 3 Ansible
+  hosts: nodo1
+  become: true
+  vars_prompt:
+    - name: "entorno"
+      prompt: "Elige el entorno (dev, pre, pro)"
+      private: no
+
+  tasks:
+    - name: Cargar variables
+      include_vars: "{{ entorno }}_vars.yaml"
+
+    - name: Configurar firewall
+      firewalld:
+        source: "{{ fw_source }}"
+        permanent: "{{ fw_permanent }}"
+        state: "{{ fw_state }}"
+...

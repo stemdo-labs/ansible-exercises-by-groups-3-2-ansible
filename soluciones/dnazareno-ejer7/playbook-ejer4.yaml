@@ -1,0 +1,11 @@
+- hosts: grupomayor
+  tasks:
+    - include_vars: missecretos.yaml
+    - name: Mostrando usuario
+      debug:
+        msg:
+          "{{ miuser }}"
+    - name: Mostrando contra
+      debug:
+        msg:
+          "{{ micontra }}"

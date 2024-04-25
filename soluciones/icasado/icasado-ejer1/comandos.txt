@@ -1,0 +1,144 @@
+# Crear inventario solo con el nodo1
+
+./inventario
+nodo1
+
+# Crear inventario ficticio
+
+./inventario
+
+[webservers]
+nodo1
+nodo4
+nodo5
+
+[dataservers]
+nodo3
+
+[proxy]
+nodo2
+
+####################################################################
+
+# Crear un fichero de configuración para evitar tener que incluir el inventario, para que nos haga todo con permisos de superusuario, etc.
+
+$ cp -pr /etc/ansible/ansible.cfg  . -> Copia el fichero de configuracion de ansible en el directorio actual
+
+####################################################################
+
+# Incluir inventario en el fichero de configuración
+
+[defaults]
+
+# some basic default values...
+
+inventory       = /home/nacho/ansible-lab/ejer1/inventario   <---
+#inventory      = /etc/ansible/hosts
+#library        = /usr/share/my_modules/
+#module_utils   = /usr/share/my_module_utils/
+#remote_tmp     = ~/.ansible/tmp
+
+####################################################################
+
+# Lanzar ping 
+
+nacho@ubuntu:~/ansible-lab/ejer1$ ansible all -m ping
+nodo4 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname nodo4: Temporary failure in name resolution",
+    "unreachable": true
+}
+nodo5 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname nodo5: Temporary failure in name resolution",
+    "unreachable": true
+}
+nodo3 | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname nodo3: Temporary failure in name resolution",
+    "unreachable": true
+}
+nodo1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+nodo2 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
+####################################################################
+
+# Instalar apache por linea de comandos
+
+nacho@ubuntu:~/ansible-lab/ejer1$ ansible all -m apt -a "name=apache2 state=present" -b -K
+
+####################################################################
+
+# Crear un playbook que a través de shell lance un comando que guarde la fecha actual en un fichero llamado /tmp/fechahora.data.
+
+---
+- name: Playbook1 ejercicio1
+  hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Guardar fecha en /tmp/fechahora.data
+      shell: date > /tmp/fechahora.data
+...      
+    
+
+####################################################################
+
+# Crear un playbook que haga las tareas anteriores
+
+---
+- name: Playbook2 ejercicio1
+  hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Instalar apache
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+    - name: Guardar fecha en /tmp/fechahora.data
+      shell: date > /tmp/fechahora.data
+...
+
+nacho@ubuntu:~/ansible-lab/ejer1$ ansible-playbook playbook1.yaml -K
+
+####################################################################b
+
+# Modificar el anterior playbook para añadir:
+# - una tarea más que compruebe que apache2 está funcionando.
+# - una tarea que instale la base de datos mariadb en su última versión.
+
+---
+- name: Playbook3 ejercicio1
+  hosts: all
+  become: true
+  user: node
+  tasks:
+    - name: Instalar apache
+      apt:
+        name: apache2
+        state: present
+    - name: Guardar fecha en /tmp/fechahora.data
+      shell: date > /tmp/fechahora.data
+    - name: Comprobar que apache se ha instalado
+      shell: apache2 -v
+    - name: Instalar mariadb
+      apt:
+        name: mariadb-server
+        state: latest
+...      
+
+####################################################################b
+

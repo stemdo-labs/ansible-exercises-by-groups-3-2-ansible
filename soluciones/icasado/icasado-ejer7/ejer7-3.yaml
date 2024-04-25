@@ -1,0 +1,14 @@
+- name: Estructura wait_for
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Comprobar que el archivo no existe
+      stat:
+        path: /home/node/bloqueo.lock
+      register: estado
+
+    - name: Crear archivo "success" cuando se haya eliminado el archivo bloqueo.lock
+      ansible.builtin.file:
+        path: /home/node/success.test
+        state: touch
+      when: not estado.stat.exists

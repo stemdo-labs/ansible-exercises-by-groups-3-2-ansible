@@ -1,0 +1,7 @@
+- hosts: grupomayor
+  tasks:
+  - name: Encontrar ficheros de mas de 100mb
+    find:
+      paths: /
+      recurse: yes
+      size: 100m

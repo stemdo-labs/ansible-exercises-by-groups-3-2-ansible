@@ -1,0 +1,16 @@
+- hosts: grupomayor
+  vars_prompt:
+    - name: "user_name"
+      prompt: "USERNAME"
+
+    - name: "user_pass"
+      prompt: "PASSWORD"
+      private: true
+      confirm: true
+
+  tasks:
+    - name: "Manage User"
+      user:
+        name: "{{ user_name }}"
+        password: "{{ user_pass }}"
+      become: true

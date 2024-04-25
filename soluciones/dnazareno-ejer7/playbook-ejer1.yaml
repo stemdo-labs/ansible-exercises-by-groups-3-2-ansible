@@ -1,0 +1,24 @@
+---
+- name: ejercicio
+  become: true
+  hosts: all
+  tasks:
+    - block:
+      - name: instala en ubuntu
+        apt:
+          name: git
+          state: present
+      rescue:
+        - name: Rescato bloque 1
+          debug:
+            msg: El nodo no posee distribucion Ubuntu
+    - block:
+      - name: instala en centos
+        yum: 
+          name: git
+          state: present
+      rescue:
+        - name: Rescato bloque 2
+          debug:
+            msg: El nodo no posee distribucion RedHat
+...

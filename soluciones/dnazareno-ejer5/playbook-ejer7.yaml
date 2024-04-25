@@ -1,0 +1,73 @@
+---
+- hosts: grupomayor
+  become: true
+  vars:
+    grupos : [usuarios,admin,desarrollo,testing,produccion]
+    usuarios : [Pedro,Juan,Maria,Ana,Antonio,Marta,Jose]
+  tasks:
+    - name: Crear grupos
+      group:
+        name: "{{ item  }}"
+        state: present
+      loop: "{{ grupos }}"
+
+    - name: Crear usuario Pedro
+      user:
+        name: Pedro
+        groups: admin,usuarios,produccion
+        uid: 1040
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+
+    - name: Crear usuario Juan
+      user:
+        name: Juan
+        groups: usuarios,desarrollo
+        uid: 1041
+
+    - name: Crear usuario Maria
+      user:
+        name: Maria
+        groups: usuarios,desarrollo
+        uid: 1042
+
+    - name: Crear usuario Ana
+      user:
+        name: Ana
+        groups: testing,produccion
+        uid: 1043
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+
+    - name: Crear usuario Antonio
+      user:
+        name: Antonio
+        groups: usuarios,testing
+        uid: 1044
+
+    - name: Crear usuario Marta
+      user:
+        name: Marta
+        groups: usuarios,produccion
+        uid: 1045
+
+    - name: Crear usuario Jose
+      user:
+        name: Jose
+        groups: admin, usuarios,desarrollo
+        uid: 1046
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+
+    - name: Crear usuario Invitado1
+      user:
+        name: Invitado1
+        groups: usuarios
+        expires: 1422403387
+
+    - name: Crear usuario Invitado2
+      user:
+        name: Invitado2
+        groups: usuarios
+        expires: 1422403387
+...
