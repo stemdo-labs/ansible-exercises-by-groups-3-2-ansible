@@ -1,0 +1,11 @@
+- name: Estructura wait_for
+  hosts: nodo1
+  become: true
+  tasks:
+    - name: Esperar a que el archivo bloqueo.lock se haya borrado
+      wait_for:
+        path: /home/node/bloqueo.lock
+        state: absent
+    - name: Mostrar mensaje
+      debug:
+        msg: "Archivo borrado"
